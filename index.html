@@ -2,13 +2,16 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Random User Viewer</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <meta name="description" content="A web application to generate and view random user profiles." />
+    <meta name="keywords" content="random user, user generator, user profiles, random profiles" />
+    <meta name="author" content="Amir Shokri">
 </head>
 
 <body>
@@ -39,7 +42,7 @@
                             <div class="tab-pane fade show active" id="basic">
                                 <div class="text-center">
                                     <img id="user-avatar" src="" class="rounded-circle mb-3"
-                                        style="width: 150px; height: 150px; object-fit: cover;" alt="User Avatar">
+                                        style="width: 150px; height: 150px; object-fit: cover;" alt="User Avatar" />
                                 </div>
                                 <h5 id="user-name" class="card-title text-center">User Name</h5>
                                 <p id="user-email" class="card-text"><i class="fas fa-envelope"></i> Email: <span>Email
@@ -50,30 +53,39 @@
                             <!-- Location Tab -->
                             <div class="tab-pane fade" id="location">
                                 <p id="user-location" class="card-text"><i class="fas fa-map-marker-alt"></i> Address:
-                                    <span>Address</span></p>
+                                    <span>Address</span>
+                                </p>
                                 <p id="user-coordinates" class="card-text"><i class="fas fa-globe"></i> Coordinates:
-                                    <span>Coordinates</span></p>
+                                    <span>Coordinates</span>
+                                </p>
                                 <p id="user-timezone" class="card-text"><i class="fas fa-clock"></i> Timezone:
-                                    <span>Timezone</span></p>
+                                    <span>Timezone</span>
+                                </p>
                             </div>
                             <!-- Login Info Tab -->
                             <div class="tab-pane fade" id="login">
                                 <p id="user-username" class="card-text"><i class="fas fa-user"></i> Username:
-                                    <span>Username</span></p>
+                                    <span>Username</span>
+                                </p>
                                 <p id="user-uuid" class="card-text"><i class="fas fa-key"></i> UUID: <span>UUID</span>
                                 </p>
                                 <p id="user-password" class="card-text"><i class="fas fa-lock"></i> Password:
-                                    <span>Password</span></p>
+                                    <span>Password</span>
+                                </p>
                             </div>
                             <!-- Other Info Tab -->
                             <div class="tab-pane fade" id="other">
                                 <p id="user-dob" class="card-text"><i class="fas fa-birthday-cake"></i> Date of Birth:
-                                    <span>DOB</span></p>
+                                    <span>DOB</span>
+                                </p>
                                 <p id="user-registered" class="card-text"><i class="fas fa-calendar"></i> Registered:
-                                    <span>Registered</span></p>
+                                    <span>Registered</span>
+                                </p>
                                 <p id="user-id" class="card-text"><i class="fas fa-id-card"></i> ID: <span>ID</span></p>
                                 <p id="user-nationality" class="card-text"><i class="fas fa-flag"></i> Nationality:
-                                    <span>Nationality</span></p>
+                                    <span>Nationality</span> <img id="user-flag" src="" alt="Country Flag"
+                                        style="width: 20px; height: 20px; margin-left: 5px;" />
+                                </p>
                             </div>
                         </div>
                         <button id="generate-btn" class="btn btn-primary mt-3 w-100">
@@ -113,7 +125,7 @@
             const user = users[randomIndex];
 
             // Update Basic Info Tab
-            document.getElementById("user-avatar").src = user.picture.large;
+            document.getElementById("user-avatar").src = `https://amirshnll.github.io/random-user-generator/avatars/${user.picture.url}`;
             document.getElementById("user-name").textContent = `${user.name.title} ${user.name.first} ${user.name.last}`;
             document.getElementById("user-email").querySelector("span").textContent = user.email;
             document.getElementById("user-phone").querySelector("span").textContent = user.phone;
@@ -136,6 +148,10 @@
             document.getElementById("user-registered").querySelector("span").textContent = `${user.registered.date} (Years: ${user.registered.age})`;
             document.getElementById("user-id").querySelector("span").textContent = `${user.id.name}: ${user.id.value}`;
             document.getElementById("user-nationality").querySelector("span").textContent = user.nat;
+
+            // Update Country Flag
+            const countryCode = user.nat.toLowerCase();
+            document.getElementById("user-flag").src = `https://amirshnll.github.io/random-user-generator/flags/${countryCode}.svg`;
         }
 
         // Add event listener to the button
