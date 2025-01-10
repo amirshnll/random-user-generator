@@ -93,6 +93,9 @@
                         </button>
                     </div>
                 </div>
+                <footer class="text-center mt-5">
+                    <p></p>
+                </footer>
             </div>
         </div>
     </div>
@@ -115,6 +118,19 @@
                 console.error("Error loading users:", error);
                 alert("Failed to load user data.");
             }
+        }
+
+        async function processCopyright() {
+            const manifest = await fetch('https://amirshnll.github.io/random-user-generator/manifest.json');
+            const version = manifest.version;
+            const currentYear = new Date().getFullYear();
+            const footerElement = document.querySelector("footer p");
+
+            footerElement.innerHTML = `
+                <small>Version ${version} &mdash; Copyright &copy; ${currentYear}
+                <a href="https://github.com/amirshnll/random-user-generator" target="_blank">Random User Generator</a>.
+                Licensed under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a>.</small>
+            `;
         }
 
         // Function to generate a random user
@@ -157,8 +173,10 @@
         // Add event listener to the button
         document.getElementById("generate-btn").addEventListener("click", generateRandomUser);
 
-        // Load users on initial page load
-        window.onload = loadUsers;
+        window.onload = () => {
+            loadUsers();
+            processCopyright();
+        }
     </script>
 </body>
 
