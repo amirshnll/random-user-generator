@@ -1,0 +1,89 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs" id="user-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="tab-basic" href="#basic" data-bs-toggle="tab">Basic
+                                Info</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="tab-location" href="#location" data-bs-toggle="tab">Location</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="tab-login" href="#login" data-bs-toggle="tab">Login Info</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="tab-other" href="#other" data-bs-toggle="tab">Other</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content">
+                        <!-- Basic Info Tab -->
+                        <div class="tab-pane fade show active" id="basic">
+                            <div class="text-center">
+                                <img id="user-avatar" src="" class="rounded-circle mb-3" alt="User Avatar" />
+                            </div>
+                            <h5 id="user-name" class="card-title text-center">User Name</h5>
+                            <p id="user-email" class="card-text"><i class="fas fa-envelope"></i> Email: <span>Email
+                                    Address</span></p>
+                            <p id="user-phone" class="card-text"><i class="fas fa-phone"></i> Phone: <span>Phone
+                                    Number</span></p>
+                        </div>
+                        <!-- Location Tab -->
+                        <div class="tab-pane fade" id="location">
+                            <p id="user-location" class="card-text"><i class="fas fa-map-marker-alt"></i> Address:
+                                <span>Address</span>
+                            </p>
+                            <p id="user-coordinates" class="card-text"><i class="fas fa-globe"></i> Coordinates:
+                                <span>Coordinates</span>
+                            </p>
+                            <p id="user-timezone" class="card-text"><i class="fas fa-clock"></i> Timezone:
+                                <span>Timezone</span>
+                            </p>
+                        </div>
+                        <!-- Login Info Tab -->
+                        <div class="tab-pane fade" id="login">
+                            <p id="user-username" class="card-text"><i class="fas fa-user"></i> Username:
+                                <span>Username</span>
+                            </p>
+                            <p id="user-uuid" class="card-text"><i class="fas fa-key"></i> UUID: <span>UUID</span>
+                            </p>
+                            <p id="user-password" class="card-text"><i class="fas fa-lock"></i> Password:
+                                <span>Password</span>
+                            </p>
+                        </div>
+                        <!-- Other Info Tab -->
+                        <div class="tab-pane fade" id="other">
+                            <p id="user-dob" class="card-text"><i class="fas fa-birthday-cake"></i> Date of Birth:
+                                <span>DOB</span>
+                            </p>
+                            <p id="user-registered" class="card-text"><i class="fas fa-calendar"></i> Registered:
+                                <span>Registered</span>
+                            </p>
+                            <p id="user-id" class="card-text"><i class="fas fa-id-card"></i> ID: <span>ID</span></p>
+                            <p id="user-nationality" class="card-text"><i class="fas fa-flag"></i> Nationality:
+                                <span>Nationality</span> <img id="user-flag" src="" alt="Country Flag" />
+                            </p>
+                        </div>
+                    </div>
+                    <button id="generate-btn" class="btn btn-primary mt-3 w-100">
+                        <i class="fas fa-random"></i> Generate Random User
+                    </button>
+                </div>
+            </div>
+            <footer class="text-center mt-5">
+                <p></p>
+            </footer>
+        </div>
+    </div>
+</div>
+
+<link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="popup.css" rel="stylesheet" />
+
+<script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="libs/fontawesome/js/all.min.js"></script>
+<script src="popup.js"></script>

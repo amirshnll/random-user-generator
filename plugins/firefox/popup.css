@@ -1,0 +1,16 @@
+.container {
+    padding: 20px;
+    min-width: 700px;
+}
+
+#user-avatar {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+#user-flag {
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+}
