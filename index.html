@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random User Viewer</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs" id="user-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="tab-basic" href="#basic" data-bs-toggle="tab">Basic
+                                    Info</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="tab-location" href="#location" data-bs-toggle="tab">Location</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="tab-login" href="#login" data-bs-toggle="tab">Login Info</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="tab-other" href="#other" data-bs-toggle="tab">Other</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <!-- Basic Info Tab -->
+                            <div class="tab-pane fade show active" id="basic">
+                                <div class="text-center">
+                                    <img id="user-avatar" src="" class="rounded-circle mb-3"
+                                        style="width: 150px; height: 150px; object-fit: cover;" alt="User Avatar">
+                                </div>
+                                <h5 id="user-name" class="card-title text-center">User Name</h5>
+                                <p id="user-email" class="card-text"><i class="fas fa-envelope"></i> Email: <span>Email
+                                        Address</span></p>
+                                <p id="user-phone" class="card-text"><i class="fas fa-phone"></i> Phone: <span>Phone
+                                        Number</span></p>
+                            </div>
+                            <!-- Location Tab -->
+                            <div class="tab-pane fade" id="location">
+                                <p id="user-location" class="card-text"><i class="fas fa-map-marker-alt"></i> Address:
+                                    <span>Address</span></p>
+                                <p id="user-coordinates" class="card-text"><i class="fas fa-globe"></i> Coordinates:
+                                    <span>Coordinates</span></p>
+                                <p id="user-timezone" class="card-text"><i class="fas fa-clock"></i> Timezone:
+                                    <span>Timezone</span></p>
+                            </div>
+                            <!-- Login Info Tab -->
+                            <div class="tab-pane fade" id="login">
+                                <p id="user-username" class="card-text"><i class="fas fa-user"></i> Username:
+                                    <span>Username</span></p>
+                                <p id="user-uuid" class="card-text"><i class="fas fa-key"></i> UUID: <span>UUID</span>
+                                </p>
+                                <p id="user-password" class="card-text"><i class="fas fa-lock"></i> Password:
+                                    <span>Password</span></p>
+                            </div>
+                            <!-- Other Info Tab -->
+                            <div class="tab-pane fade" id="other">
+                                <p id="user-dob" class="card-text"><i class="fas fa-birthday-cake"></i> Date of Birth:
+                                    <span>DOB</span></p>
+                                <p id="user-registered" class="card-text"><i class="fas fa-calendar"></i> Registered:
+                                    <span>Registered</span></p>
+                                <p id="user-id" class="card-text"><i class="fas fa-id-card"></i> ID: <span>ID</span></p>
+                                <p id="user-nationality" class="card-text"><i class="fas fa-flag"></i> Nationality:
+                                    <span>Nationality</span></p>
+                            </div>
+                        </div>
+                        <button id="generate-btn" class="btn btn-primary mt-3 w-100">
+                            <i class="fas fa-random"></i> Generate Random User
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let users = []; // Variable to store user data
+
+        // Function to load users from the JSON file
+        async function loadUsers() {
+            try {
+                const response = await fetch("https://amirshnll.github.io/random-user-generator/data/data.json");
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch data: ${response.statusText}`);
+                }
+                users = await response.json();
+                generateRandomUser(); // Generate a random user after loading the data
+            } catch (error) {
+                console.error("Error loading users:", error);
+                alert("Failed to load user data.");
+            }
+        }
+
+        // Function to generate a random user
+        function generateRandomUser() {
+            if (users.length === 0) return; // Ensure data exists
+
+            const randomIndex = Math.floor(Math.random() * users.length);
+            const user = users[randomIndex];
+
+            // Update Basic Info Tab
+            document.getElementById("user-avatar").src = user.picture.large;
+            document.getElementById("user-name").textContent = `${user.name.title} ${user.name.first} ${user.name.last}`;
+            document.getElementById("user-email").querySelector("span").textContent = user.email;
+            document.getElementById("user-phone").querySelector("span").textContent = user.phone;
+
+            // Update Location Tab
+            document.getElementById("user-location").querySelector("span").textContent =
+                `${user.location.street.number} ${user.location.street.name}, ${user.location.city}, ${user.location.state}, ${user.location.country}`;
+            document.getElementById("user-coordinates").querySelector("span").textContent =
+                `Lat: ${user.location.coordinates.latitude}, Long: ${user.location.coordinates.longitude}`;
+            document.getElementById("user-timezone").querySelector("span").textContent =
+                `${user.location.timezone.description} (Offset: ${user.location.timezone.offset})`;
+
+            // Update Login Info Tab
+            document.getElementById("user-username").querySelector("span").textContent = user.login.username;
+            document.getElementById("user-uuid").querySelector("span").textContent = user.login.uuid;
+            document.getElementById("user-password").querySelector("span").textContent = user.login.password;
+
+            // Update Other Info Tab
+            document.getElementById("user-dob").querySelector("span").textContent = `${user.dob.date} (Age: ${user.dob.age})`;
+            document.getElementById("user-registered").querySelector("span").textContent = `${user.registered.date} (Years: ${user.registered.age})`;
+            document.getElementById("user-id").querySelector("span").textContent = `${user.id.name}: ${user.id.value}`;
+            document.getElementById("user-nationality").querySelector("span").textContent = user.nat;
+        }
+
+        // Add event listener to the button
+        document.getElementById("generate-btn").addEventListener("click", generateRandomUser);
+
+        // Load users on initial page load
+        window.onload = loadUsers;
+    </script>
+</body>
+
+</html>
