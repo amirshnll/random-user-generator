@@ -65,3 +65,18 @@ https://amirshnll.github.io/random-user-generator
 ---
 
 Contributions are welcome! Feel free to fork the repository and create pull requests for enhancements or bug fixes.
+
+## Screenshots
+
+Here are some screenshots of the extension in action:
+
+1. ![Screenshot 1](screenshots/screenshot-1.png)
+2. ![Screenshot 2](screenshots/screenshot-2.png)
+3. ![Screenshot 3](screenshots/screenshot-3.png)
+4. ![Screenshot 4](screenshots/screenshot-4.png)
+5. ![Screenshot 5](screenshots/screenshot-5.png)
+
+## Plugin URLs
+
+- **Chrome**: [Link to Chrome Web Store](https://chrome.google.com)
+- **Firefox**: [Link to Firefox Add-ons](https://addons.mozilla.org)
