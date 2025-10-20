@@ -68,9 +68,9 @@ window.onload = () => {
             const footerElement = document.querySelector("footer p");
 
             footerElement.innerHTML = `
-                <small>Version ${version} &mdash; Copyright &copy; ${currentYear}
+                <small>Version ${version} &mdash; Copyright &copy;${currentYear}
                 <a href="https://github.com/amirshnll/random-user-generator" target="_blank">Random User Generator</a>.
-                Licensed under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a>.</small>
+                Licensed under the <a href="https://opensource.org/licenses/MIT" target="_blank">MIT License</a> | <a href="https://ashokri.com/donate" target="_blank">Donate</a>.</small>
             `;
         })
         .catch(error => console.error("Failed to fetch manifest:", error));
